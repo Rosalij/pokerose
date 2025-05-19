@@ -2,6 +2,7 @@
 
 const imageFormEl = document.getElementById('imageForm');
 const galleryEl = document.getElementById("gallery")
+
 window.onload = init
 
 function init() {
@@ -36,6 +37,8 @@ async function getImages() {
         console.error("Error fetching images:", error);
     }
 }
+
+
 //load images to DOM
 function loadImages(image) {
     galleryEl.innerHTML = "";
@@ -50,7 +53,6 @@ image.forEach(image => {
         galleryEl.appendChild(divEl);
     });
 }
-
 
 
 // Create new image, requires authentication token
@@ -91,3 +93,5 @@ async function newImage(e) {
     alert("Something went wrong, the image might be too big. Max 5MB is allowed");
   }
 }
+
+

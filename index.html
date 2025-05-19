@@ -6,24 +6,83 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pokérose</title>
-</head> 
+</head>
 
 <body>
   <script type="module" src="/src/main.js"></script>
-  <header><h1>Poké Rose</h1></header>
+  <header>
+    <h1>Poké Rose</h1>
+  </header>
   <main>
 
- <form id="imageForm" action="/image" method="POST" enctype="multipart/form-data">
-  <label for="image">Upload an image:</label>
-  <input type="file" id="image" name="image" accept="image/*" required>
-  <label for="description" id="description">Description:</label>
-  <textarea name="description" id="imagedescription"></textarea>
-  <button type="submit">Upload</button>
-</form>
-<div id="gallery"></div>
+    <form id="imageForm" action="/image" method="POST" enctype="multipart/form-data">
+      <label for="image">Upload an image:</label>
+      <input type="file" id="image" name="image" accept="image/*" required>
+      <label for="description" id="description">Description:</label>
+      <textarea name="description" id="imagedescription"></textarea>
+      <button type="submit">Upload</button>
+    </form>
+    <div id="gallery"></div>
+
+
+
+    <form id="foodForm" action="/food" method="POST">
+      <label for="foodname">Name:</label>
+      <input type="text" name="foodname" id="foodname" required>
+      <label for="foodprice">Price:</label>
+      <input type="text" name="foodprice" id="foodprice"></input>
+      <label for="description" id="description">Description:</label>
+      <textarea name="description" id="description"></textarea>
+      <button type="submit">Add item</button>
+    </form>
+
+
+    <form id="drinkForm" action="/drink" method="POST">
+      <label for="drinkname">name:</label>
+      <input type="text" name="drinkname" id="drinkname" required>
+      <label for="drinkprice">Price:</label>
+      <input type="text" name="drinkprice" id="drinkprice" required></input>
+      <button type="submit">Add item</button>
+    </form>
+    <br>
+
+    <form id="orderForm" action="/order" method="POST">
+      <label for="name">Your name:</label>
+      <input type="text" name="name" id="name" required>
+      <label for="phoneno" id="phoneno">Your phone number:</label>
+      <input type="text" name="phoneno" id="phoneno" required></input>
+      <label for="choosefood" id="choosefood">Choose food:</label>
+      <select id="choosefood" name="choosefood">
+        <option value="pizza">Pizza</option>
+        <option value="burger">Burger</option>
+        <option value="sushi">Sushi</option>
+        <option value="pasta">Pasta</option>
+      </select>
+      <label for="choosedrink">Choose a drink:</label>
+      <select id="choosedrink" name="choosedrink" required>
+        <option value="" disabled selected>Select a drink</option>
+        <option value="water">Water</option>
+        <option value="soda">Soda</option>
+        <option value="juice">Juice</option>
+        <option value="coffee">Coffee</option>
+        <option value="tea">Tea</option>
+      </select>
+      <label for="note">Notes / other:</label>
+      <textarea name="note" id="note"></textarea>
+      <button type="submit">Place order!</button>
+    </form>
+    <br>
+
+
+    <form id="loginuser">
+      <label for="username">Username:</label>
+      <input type="text" name="username" id="username">
+      <label for="password">Password:</label>
+      <input type="text" name="password" id="password">
+      <button type="submit">Add item</button>
+    </form>
   </main>
   <footer></footer>
-
 </body>
 
 </html>
