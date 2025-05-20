@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+$background-color: #D7D7D5;
+$text-color-red: #AA411A;
+$text-color-gray: #6E7F78;
+$border-green: #C6D586;
+$primary-font: "urbanist", "sans serif";
+
+%heading-style {
+  color: #AA411A;
+  font-size: 3em;
+  max-width: min-content;
+  font-style: italic;
+  font-weight: 900;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: $background-color;
+  font-family: $primary-font;
+}
+
+h1 {
+  @extend %heading-style;
+  padding: 0.7em;
+  font-size: 4.5em;
+}
+
+
+footer {
+
+
+  background-color: $text-color-gray;
+  color: white;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .p_pokerose {
+    @extend %heading-style;
+    color: white;
+  }
+
+  strong {
+    font-style: italic;
+    font-weight: 700;
+  }
+}
+
+
+form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  font-family: sans-serif;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+div {
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+
+input,
+select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

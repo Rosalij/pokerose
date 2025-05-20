@@ -1,96 +1,33 @@
-<!doctype html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pokérose</title>
-  <link rel="stylesheet" href="/src/style.css">
+  <title>Pokérose pokébowl takeaway</title>
+  <link rel="stylesheet" href="/src/style.scss">
 </head>
 
 <body>
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="./src/js/main.js"></script>
   <header>
     <h1>Poké Rose</h1>
   </header>
   <main>
 
-    <form id="imageForm" action="/image" method="POST" enctype="multipart/form-data">
-      <label for="image">Upload an image:</label>
-      <input type="file" id="image" name="image" accept="image/*" required>
-      <label for="description" id="description">Description:</label>
-      <textarea name="description" id="imagedescription"></textarea>
-      <button type="submit">Upload</button>
-    </form>
-    <div id="gallery"></div>
+    <div id="foodMenu"></div>
 
-
-
-    <form id="foodForm" action="/food" method="POST">
-      <label for="foodname">Name:</label>
-      <input type="text" name="foodname" id="foodname" required>
-      <label for="foodprice">Price:</label>
-      <input type="text" name="foodprice" id="foodprice"></input>
-      <label for="description" id="description">Description:</label>
-      <textarea name="description" id="description"></textarea>
-      <button type="submit">Add item</button>
-    </form>
- <div id="foodmenu"></div>
-
-
-    <form id="drinkForm" action="/drink" method="POST">
-      <label for="drinkname">name:</label>
-      <input type="text" name="drinkname" id="drinkname" required>
-      <label for="drinkprice">Price:</label>
-      <input type="text" name="drinkprice" id="drinkprice" required></input>
-      <button type="submit">Add item</button>
-    </form>
-     <div id="drinkmenu"></div>
-
-    <br>
-
-    <form id="orderForm">
-      <label for="name">Your name:</label>
-      <input type="text" name="name" id="name">
-      <label for="phoneno">Your phone number:</label>
-      <input type="text" name="phoneno" id="phoneno">
-      <label for="choosefood">Choose food:</label>
-      <select id="choosefood" name="choosefood">
-        <option value="pizza">Pizza</option>
-        <option value="burger">Burger</option>
-        <option value="sushi">Sushi</option>
-        <option value="pasta">Pasta</option>
-      </select>
-      <label for="choosedrink">Choose a drink:</label>
-      <select id="choosedrink" name="choosedrink">
-        <option value="None" selected>Select a drink</option>
-        <option value="water">Water</option>
-        <option value="soda">Soda</option>
-        <option value="juice">Juice</option>
-        <option value="coffee">Coffee</option>
-        <option value="tea">Tea</option>
-      </select>
-      <label for="note">Notes / other:</label>
-      <textarea name="note" id="note"></textarea>
-      <button type="submit">Place order!</button>
-    </form>
-     <div id="currentorders"></div>
-
-    <br>
-
-
-    <form id="loginform">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username">
-      <label for="password">Password:</label>
-      <input type="text" name="password" id="password">
-      <button type="submit">Log in</button>
-    </form>
-    <div id="loggedinuser"></div>
-
+    <div id="drinkMenu"></div>
   </main>
-  <footer></footer>
+
+  <footer>
+    <div id="footer_container">
+      <div><p class="p_pokerose">Poké rose</p></div>
+      <p><strong>Find us:</strong><br>Wallaby way 24 Sydney</p>
+      <p><strong>Call us:</strong><br>1234 123 00</p>
+      <p><strong>Email us:</strong><br>pokerosepokebowls@info.com</p>
+    </div>
+  </footer>
 </body>
 
 </html>
