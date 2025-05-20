@@ -11,21 +11,41 @@
 <body>
   <script type="module" src="./src/js/main.js"></script>
   <header>
-    <h1>Poké Rose</h1>
+
+    <nav>
+      <ul>
+        <li><a href="./src/takeaway.html">Order takeaway</a></li>
+        <li><a href="#ourStory">Our story</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+      <h1>Poké Rose</h1>
+    </nav>
   </header>
+
+  <div id="vh_image_container"></div>
+
   <main>
 
-    <div id="foodMenu"></div>
+    <h2 id="takeawaylink"><a href="./src/takeaway.html">pokébowl takeaway</a></h2>
+    <div> <span id="line1"></span><span id="line2"></span></div>
 
-    <div id="drinkMenu"></div>
+    <section class="publicmenu_container">
+      <div id="menu_flex_container">
+        <h2>Menu</h2>
+        <div class="publicmenu" id="foodMenu"></div>
+       <div class="publicmenu" id="drinkMenu"> </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <div id="footer_container">
-      <div><p class="p_pokerose">Poké rose</p></div>
-      <p><strong>Find us:</strong><br>Wallaby way 24 Sydney</p>
-      <p><strong>Call us:</strong><br>1234 123 00</p>
-      <p><strong>Email us:</strong><br>pokerosepokebowls@info.com</p>
+    <div class="footer_container">
+      <p class="p_pokerose">Poké rose</p>
+      <div>
+        <p><strong>Find us:</strong><br>Wallaby way 24 Sydney</p>
+        <p><strong>Call us:</strong><br>1234 123 00</p>
+        <p><strong>Email us:</strong><br>pokerosepokebowls@info.com</p>
+      </div>
     </div>
   </footer>
 </body>

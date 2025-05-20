@@ -1,5 +1,5 @@
 /*This Javascript file is for public API calls and forms
-which can be used on the restaurant public pages without logging in. */ 
+which can be used on the restaurant public pages without logging in. */
 
 //declaring variables for elements in DOM
 const galleryEl = document.getElementById("gallery");
@@ -7,6 +7,7 @@ const loginFormEl = document.getElementById("loginForm");
 const orderFormEl = document.getElementById("orderForm");
 const foodMenuEl = document.getElementById("foodMenu")
 const drinkMenuEl = document.getElementById("drinkMenu")
+const publicMenuEl = document.querySelector(".publicmenu")
 
 
 //run on load
@@ -14,7 +15,7 @@ window.onload = init
 
 function init() {
   //Event listener for image form
-
+        
   if (loginFormEl) {
     //Event listener for login form
     loginFormEl.addEventListener("submit", login);
@@ -41,6 +42,8 @@ function init() {
     getImages()
   }
 }
+
+
 
 //function for loading drink menu items
 async function loadDrinkMenu() {
@@ -74,6 +77,8 @@ async function loadDrinkMenu() {
         drinkMenuEl.appendChild(ulEl)
         liEl.appendChild(button);
         ulEl.appendChild(liEl);
+          //if the menu has class .publicmenu, hide delete button
+         if (publicMenuEl) {button.style.display="none"}
       });
     } else {//if error
       console.error("Failed to fetch drink");
@@ -108,9 +113,13 @@ async function loadFoodMenu() {
         ulEl.appendChild(liEl)
         //add delete button with each item _id
         const btn = document.createElement("button");
-        btn.textContent = "Delete";
+        //if the menu has class .publicmenu, hide delete button
+         if (publicMenuEl) {btn.style.display="none"}
+         btn.textContent = "Delete";
         btn.addEventListener("click", () => deleteFoodItem(food._id));
-        liEl.appendChild(btn);
+liEl.appendChild(btn);
+       
+
       });
     } else {//if error
       console.error("Failed to fetch food");
@@ -145,7 +154,7 @@ async function addOrder(e) {
     alert("Please select food or drink to order")
     return;
   }
-//create order object
+  //create order object
   let order = {
     name: name,
     phoneno: phoneno,
@@ -254,7 +263,7 @@ async function getImages() {
 function loadImages(image) {
   //refresh gallery
   galleryEl.innerHTML = "";
- //for each passed image, create a div
+  //for each passed image, create a div
   image.forEach(image => {
     const divEl = document.createElement("div");
     divEl.className = "image_div";
@@ -262,7 +271,7 @@ function loadImages(image) {
     divEl.innerHTML = `
             ${image.imageurl ? `<img src="${image.imageurl}" alt="${image.description}">` : ""}
         `;
-        //connect to DOM
+    //connect to DOM
     galleryEl.appendChild(divEl);
   });
 }
