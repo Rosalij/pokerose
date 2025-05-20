@@ -6,6 +6,7 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pokérose</title>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 
 <body>
@@ -35,6 +36,7 @@
       <textarea name="description" id="description"></textarea>
       <button type="submit">Add item</button>
     </form>
+ <div id="foodmenu"></div>
 
 
     <form id="drinkForm" action="/drink" method="POST">
@@ -44,14 +46,16 @@
       <input type="text" name="drinkprice" id="drinkprice" required></input>
       <button type="submit">Add item</button>
     </form>
+     <div id="drinkmenu"></div>
+
     <br>
 
-    <form id="orderForm" action="/order" method="POST">
+    <form id="orderForm">
       <label for="name">Your name:</label>
-      <input type="text" name="name" id="name" required>
-      <label for="phoneno" id="phoneno">Your phone number:</label>
-      <input type="text" name="phoneno" id="phoneno" required></input>
-      <label for="choosefood" id="choosefood">Choose food:</label>
+      <input type="text" name="name" id="name">
+      <label for="phoneno">Your phone number:</label>
+      <input type="text" name="phoneno" id="phoneno">
+      <label for="choosefood">Choose food:</label>
       <select id="choosefood" name="choosefood">
         <option value="pizza">Pizza</option>
         <option value="burger">Burger</option>
@@ -59,8 +63,8 @@
         <option value="pasta">Pasta</option>
       </select>
       <label for="choosedrink">Choose a drink:</label>
-      <select id="choosedrink" name="choosedrink" required>
-        <option value="" disabled selected>Select a drink</option>
+      <select id="choosedrink" name="choosedrink">
+        <option value="None" selected>Select a drink</option>
         <option value="water">Water</option>
         <option value="soda">Soda</option>
         <option value="juice">Juice</option>
@@ -71,16 +75,20 @@
       <textarea name="note" id="note"></textarea>
       <button type="submit">Place order!</button>
     </form>
+     <div id="currentorders"></div>
+
     <br>
 
 
-    <form id="loginuser">
+    <form id="loginform">
       <label for="username">Username:</label>
       <input type="text" name="username" id="username">
       <label for="password">Password:</label>
       <input type="text" name="password" id="password">
-      <button type="submit">Add item</button>
+      <button type="submit">Log in</button>
     </form>
+    <div id="loggedinuser"></div>
+
   </main>
   <footer></footer>
 </body>
