@@ -1,3 +1,8 @@
+import '../style.scss';
+import '../admin.scss';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 /*This Javascript file is for public API calls and forms
 which can be used on the restaurant public pages without logging in. */
 
@@ -15,7 +20,7 @@ window.onload = init
 
 function init() {
   //Event listener for image form
-        
+
   if (loginFormEl) {
     //Event listener for login form
     loginFormEl.addEventListener("submit", login);
@@ -67,7 +72,7 @@ async function loadDrinkMenu() {
       data.forEach(drink => {
         let liEl = document.createElement("li");
         liEl.innerHTML = `
-  <p>${drink.name} - ${drink.price}</p>`
+  <p><strong>${drink.name}</strong> - ${drink.price}</p>`
 
         //create delete button used by Admin
         const button = document.createElement("button");
@@ -77,8 +82,8 @@ async function loadDrinkMenu() {
         drinkMenuEl.appendChild(ulEl)
         liEl.appendChild(button);
         ulEl.appendChild(liEl);
-          //if the menu has class .publicmenu, hide delete button
-         if (publicMenuEl) {button.style.display="none"}
+        //if the menu has class .publicmenu, hide delete button
+        if (publicMenuEl) { button.style.display = "none" }
       });
     } else {//if error
       console.error("Failed to fetch drink");
@@ -108,17 +113,17 @@ async function loadFoodMenu() {
         //create li element for item and button
         let liEl = document.createElement("li");
         liEl.innerHTML = `
-  <p>${food.name} - ${food.price} <br> ${food.description}</p>`
+  <p><strong>${food.name}</strong>  - ${food.price}<br> ${food.description}</p>`
         foodMenuEl.appendChild(ulEl)
         ulEl.appendChild(liEl)
         //add delete button with each item _id
         const btn = document.createElement("button");
         //if the menu has class .publicmenu, hide delete button
-         if (publicMenuEl) {btn.style.display="none"}
-         btn.textContent = "Delete";
+        if (publicMenuEl) { btn.style.display = "none" }
+        btn.textContent = "Delete";
         btn.addEventListener("click", () => deleteFoodItem(food._id));
-liEl.appendChild(btn);
-       
+        liEl.appendChild(btn);
+
 
       });
     } else {//if error
@@ -174,7 +179,7 @@ async function addOrder(e) {
     if (resp.ok) { //if order is saved
       const data = await resp.json()
       alert("Order placed!")
-
+      orderFormEl.reset()
     } else { //if error
       console.log("something went wrong" + error)
     }
@@ -186,53 +191,6 @@ async function addOrder(e) {
 
 
 
-
-//function for logging in user, fetch for validation and get JWT token to access hidden pages
-async function login(e) {
-  //prevent page refresh
-  e.preventDefault()
-  //get input values from form
-  let nameinput = document.getElementById("username").value;
-  let passwordinput = document.getElementById("password").value;
-
-  //check if the user has filled in all the fields
-  if (!nameinput || !passwordinput) {
-    alert("Please fill in all fields")
-    return;
-  }
-
-  //create a user object with the username and password
-  let admin = {
-    username: nameinput,
-    password: passwordinput
-  }
-  try {
-    //send a POST request to the server with the user object
-    const resp = await fetch("https://pokerose-db.onrender.com/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(admin)
-    })
-    if (resp.ok) {
-
-      const data = await resp.json()
-      //set the JWT token in local storage
-      localStorage.setItem("JWT_token", data.token)
-      //write logged in user to DOM
-      let loggedinuserEl = document.getElementById("loggedinuser")
-      console.log(data)
-      loggedinuserEl.innerHTML = `<p>logged in as: ${data.admin.username}</p>`
-
-    } else { //if error
-      alert("Wrong username or password")
-    }
-  } catch (error) {
-    console.error("Error logging in:", error)
-    alert("An error occured. Please try again")
-  }
-}
 
 
 

@@ -1,3 +1,10 @@
+
+
+import '../style.scss';
+import '../admin.scss';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 /*
 This Javascript file is for Admin purposes on the Admin page,
 you must be logged in to get a personal JSON Web Token saved in localstorage 
@@ -11,15 +18,24 @@ const currentOrdersEl = document.getElementById("currentOrders")
 const foodFormEl = document.getElementById("foodForm")
 const drinkFormEl = document.getElementById("drinkForm")
 const galleryEl = document.getElementById("gallery");
-const orderFormEl = document.getElementById("orderForm");
 const foodMenuEl = document.getElementById("foodMenu")
 const drinkMenuEl = document.getElementById("drinkMenu")
+const logoutEl = document.getElementById("logout");
 //run on load
 window.onload = init
 
+
+
 function init() {
   //Event listener for image form
-  
+
+  if (logoutEl) {
+    logoutEl.addEventListener("click", () => {
+      localStorage.removeItem("JWT_token")
+      window.location.href = "login.html";
+    })
+  }
+
   if (imageFormEl) {
     imageFormEl.addEventListener("submit", newImage);
   }
@@ -44,7 +60,7 @@ function init() {
     loadOrders()
   }
 
-  
+
   //load current food menu if element exists 
   if (foodMenuEl) {
     loadFoodMenu()
@@ -152,6 +168,7 @@ async function addDrinkItem(e) {
     if (resp.ok) {
       const data = await resp.json()
       alert("Drink item added to menu!")
+      drinkFormEl.reset()
       //refresh drink menu
       loadDrinkMenu()
     } else { //if error
@@ -178,7 +195,7 @@ async function addFoodItem(e) {
     return;
   }
 
-//Create food object
+  //Create food object
   let food = {
     name: foodname,
     price: foodprice,
@@ -198,6 +215,7 @@ async function addFoodItem(e) {
 
       const data = await resp.json()
       alert("Food item added to menu!")
+      foodFormEl.reset()
       //refresh food menu
       loadFoodMenu()
     } else {//if error
@@ -296,7 +314,7 @@ async function newImage(e) {
     alert("Please choose an image and description");
     return;
   }
-//create formData to send in request
+  //create formData to send in request
   const formData = new FormData();
   formData.append("description", imageDescriptionEl);
   formData.append("image", imageEl);
@@ -313,10 +331,11 @@ async function newImage(e) {
     if (resp.ok) { //if response ok, imageurl and description created and saved to server
       const data = await resp.json();
       alert("Image created");
-    
+      imageFormEl.reset()
+
     } else {//if error, file size might be too big (max 5MB)
       console.error("Create post failed", await resp.json());
- alert("Something went wrong, the image might be too big. Max 5MB is allowed");
+      alert("Something went wrong, the image might be too big. Max 5MB is allowed");
     }
   } catch (error) {
     console.error("Post error:", error);
@@ -431,7 +450,7 @@ async function getImages() {
 function loadImages(image) {
   //refresh gallery
   galleryEl.innerHTML = "";
- //for each passed image, create a div
+  //for each passed image, create a div
   image.forEach(image => {
     const divEl = document.createElement("div");
     divEl.className = "image_div";
@@ -439,7 +458,7 @@ function loadImages(image) {
     divEl.innerHTML = `
             ${image.imageurl ? `<img src="${image.imageurl}" alt="${image.description}">` : ""}
         `;
-        //connect to DOM
+    //connect to DOM
     galleryEl.appendChild(divEl);
   });
 }
@@ -483,6 +502,7 @@ async function login(e) {
       console.log(data)
       loggedinuserEl.innerHTML = `<p>logged in as: ${data.admin.username}</p>`
 
+      window.location.href = "/adminorders.html"
     } else { //if error
       alert("Wrong username or password")
     }

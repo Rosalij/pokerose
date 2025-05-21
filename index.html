@@ -1,11 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pokérose pokébowl takeaway</title>
-  <link rel="stylesheet" href="/src/style.scss">
+
 </head>
 
 <body>
@@ -14,27 +14,92 @@
 
     <nav>
       <ul>
-        <li><a href="./src/takeaway.html">Order takeaway</a></li>
-        <li><a href="#ourStory">Our story</a></li>
-        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#takeaway_container">Order takeaway</a></li>
+        <li><a href="#publicmenu">Menu</a></li>
+        <li><a href="#ourstory_container">Our story</a></li>
+        <li><a href="#gallery_container">Gallery</a></li>
       </ul>
-      <h1>Poké Rose</h1>
+      <h1>Poké rose</h1>
     </nav>
   </header>
 
-  <div id="vh_image_container"></div>
+
 
   <main>
+    <div id="vh_image_container"></div>
+    <h2 id="takeawaylink"><a href="#takeaway_container">pokébowl takeaway</a></h2>
 
-    <h2 id="takeawaylink"><a href="./src/takeaway.html">pokébowl takeaway</a></h2>
-    <div> <span id="line1"></span><span id="line2"></span></div>
+    <div id="arrowDown"> <a id=arrowlink href="#publicmenu"> <span id="line1"></span><span id="line2"></span> </a></div>
 
-    <section class="publicmenu_container">
+    <section data-aos="fade-up" data-aos-duration="2000" id="publicmenu" class="publicmenu_container">
+      <p id="filler_text">Rooted in the ocean. Refined with care. <br>Welcome to Poké rose.</p>
+      <h2>our menu</h2>
       <div id="menu_flex_container">
-        <h2>Menu</h2>
-        <div class="publicmenu" id="foodMenu"></div>
-       <div class="publicmenu" id="drinkMenu"> </div>
+        <div id="food_container">
+          <h3>Signature bowls</h3>
+          <div class="publicmenu" id="foodMenu"></div>
+        </div>
+        <div id="drink_container">
+          <h3>Drinks</h3>
+          <div class="publicmenu" id="drinkMenu"></div>
+        </div>
       </div>
+    </section>
+
+
+
+    <section id="takeaway_container" >
+      <div id="image_container">
+        <img src="/images/pexels-polina-tankilevitch-4828095.jpg" width="1000" height="650" alt="pokébowls">
+      </div>
+      <form id="orderForm" data-aos="zoom-up" data-aos-duration="1500">
+        <h2>order takeaway</h2>
+        <label for="name">Your name:</label>
+        <input type="text" name="name" id="name">
+        <label for="phoneno">Your phone number:</label>
+        <input type="text" name="phoneno" id="phoneno">
+        <label for="choosefood">Choose food:</label>
+        <select id="choosefood" name="choosefood">
+          <option value="pizza">Pizza</option>
+          <option value="burger">Burger</option>
+          <option value="sushi">Sushi</option>
+          <option value="pasta">Pasta</option>
+        </select>
+        <label for="choosedrink">Choose a drink:</label>
+        <select id="choosedrink" name="choosedrink">
+          <option value="None" selected>Select a drink</option>
+          <option value="water">Water</option>
+          <option value="soda">Soda</option>
+          <option value="juice">Juice</option>
+          <option value="coffee">Coffee</option>
+          <option value="tea">Tea</option>
+        </select>
+        <label for="note">Notes / other:</label>
+        <textarea name="note" id="note"></textarea>
+        <button type="submit">Place order!</button>
+      </form>
+
+    </section>
+
+    <section id="ourstory_container">
+      <img src="/images/david-foodphototasty-pinkbg-poke-unsplash.jpg" alt="Pokébowl and leafs" width="500"
+        height="600">
+      <div data-aos="fade-up" data-aos-duration="2000">
+        <h2>our story</h2>
+        <p>Poké Rose was created with a simple idea: serve high-quality poke with care and attention to detail. Drawing
+          from
+          Hawaiian tradition and Japanese technique, we focus on clean flavors, fresh ingredients, and well-balanced
+          combinations.<br> <br>
+          Our menu is built around responsibly sourced seafood, seasonal produce, and house-made dressings — nothing
+          overdone, nothing unnecessary. Just honest food, made well.
+          We’re here to offer a quieter, more thoughtful take on poke.</p>
+      </div>
+    </section>
+
+    <section id="gallery_container">
+      <h2 id="gallery_title">gallery</h2>
+      <div data-aos="fade-up" data-aos-duration="2000" id="gallery"></div>
+      
     </section>
   </main>
 
