@@ -9,40 +9,25 @@
     <script src="checkAuth.js"></script>
 </head>
 
-<body>
+<body id="adminbody">
     <script type="module" src="./src/js/admin.js"></script>
-    <header>
-   <h1 id="admin_h1">Poké rose Admin</h1>
-        <nav id="admin_nav">
-            <ul>
-
-                <li><a href="adminorders.html">Current orders</a></li>
-                    <li><a href="adminmenu.html">Edit menu</a></li>
-                <li><a href="admingallery.html">Edit gallery</a></li>
-                   <li><a id="logout">Log out</a></li>
-
-            </ul>
-         
-        </nav>
-    </header>
-    <main>
-        
-        <div class="form_container">
-
+    <div id="admin_container">
+        <header id="adminheader">
+            <nav id="admin_nav">
+                <h1 id="admin_h1">Poké rose admin</h1>
+                <ul>
+                    <li><a href="adminorders.html">Current orders</a></li>
+                    <li ><a id="current" href="adminmenu.html">Edit menu</a></li>
+                    <li><a href="admingallery.html">Edit gallery</a></li>
+                    <li><a href="login.html" id="logout">Log out</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class ="adminmain_container" id="order_container">
+            <h2>Current orders:</h2>
             <div id="currentOrders"></div>
         </div>
-    </main>
-
-    <footer>
-        <div class="footer_container">
-            <p class="p_pokerose">Poké rose</p>
-            <div>
-                <p><strong>Find us:</strong><br>Wallaby way 24 Sydney</p>
-                <p><strong>Call us:</strong><br>1234 123 00</p>
-                <p><strong>Email us:</strong><br>pokerosepokebowls@info.com</p>
-            </div>
-        </div>
-    </footer>
+    </div>
 </body>
 
 </html>

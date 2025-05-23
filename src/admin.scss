@@ -20,56 +20,240 @@ $primary-font: "urbanist", "sans serif";
   letter-spacing: 0.2em;
 }
 
-
-
-.form_container {
-    width: 20vw;
-    align-items: center;
-    margin: auto;
-    margin-top: 10em;
-    margin-bottom: 10em;
-
-    button {
-        width: 100%;
-        margin: 0;
-    }
+#current {
+  font-weight: 800;
 }
 
+#adminheader {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 20%;
+}
+
+#admin_container {
+  display: flex;
+
+}
+
+#loginForm {
+  margin: auto;
+  margin-top: 6em;
+  margin-bottom: 6em;
+  width: 18em;
+
+  button {
+    margin: auto;
+    width: 100%;
+  }
+}
+
+
 #admin_h1 {
-    font-size: 1.6em;
-    max-width: 100vw;
+  font-size: 1.1em;
+  position: relative;
+  font-style: normal;
+  max-width: 100%;
+  color: white;
+  font-weight: 600;
 }
 
 #admin_nav {
- padding: 0;
+  font-weight: 400;
+  height: 100%;
+  position: fixed;
+  width: 20%;
+  text-align: center;
+  background-color: #6E7F78;
+  border-right: 1em solid $border-green;
 
- font-weight: 500;
- padding-top: 1em;
- 
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  li {
+    width: 100%;
+
+    background-color: white;
+    padding: 0.4em;
+    border-radius: 0.4em;
+    border: 2px solid black;
+    transition: 0.3s;
+
+    a {
+      width: 100%;
+      min-width: 100%;
+      font-weight: 500;
+      text-decoration: none;
+      color: black;
+    }
+
+    a:hover {
+      font-weight: 500;
+      text-decoration: underline;
+    }
+  }
+
+  li:hover {
+    border-color: black;
+    background-color: $border-green;
+
+  }
+}
+
+
+.adminmain_container {
+  width: 70%;
+  margin-top: 2em;
+  padding-top: 1em;
+  border-radius: 1em;
+  background-color: $text-color-gray;
+
+  h2 {
+    color: white;
+    width: 100%;
+    font-weight: 600;
+    letter-spacing: 0;
+    margin: auto;
     text-align: center;
-  background-color: $border-green;
-         border:1px solid #AA411A;
-    ul {
-         display: block;
-        padding: 0;
-        width: 100%;
-   
+  }
+}
+
+#currentOrders {
+  margin-bottom: 2em;
+
+  ul {
+    height: 80vh;
+    max-width: 40em;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    list-style: none;
+    margin-bottom: 2em;
+    margin: auto;
+    border-radius: 1em;
+    align-items: center;
+    overflow-x: hidden;
+    border: 1px solid rgb(255, 255, 255);
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 1em;
+    background-color: white;
+    padding: 0.5em;
+
+    p {
+      width: 50%;
+
     }
 
-    li {
-         display: inline-block;
-         width:10%;
-        box-shadow: 2px 2px 1px black;
-        padding: 0.7em;
-        background-color: $text-color-gray;
-      
-       a { color: white;}
-  transition: 0.3s;  }
-
-    li:hover {
-        background-color: rgb(66, 66, 66);
+    button {
+      padding: 0.5em;
+      width: 5em;
+      height: 5em;
+      color: white;
+      font-size: 1.2em;
+      font-weight: 600;
+      border: 3px solid $border-green;
+      background-color: #474747;
+      margin: 1.5em 1.5em 0 auto;
+      transition: 0.2s;
     }
-    
+  }
 
+  button:hover {
+    background-color: $text-color-red;
 
+  }
+}
+
+#adminmenu_container {
+  display: flex;
+  gap: 3em;
+  margin-bottom: 4em;
+}
+
+.adminmenu {
+  width: 60%;
+  padding: 1em;
+
+  h3 {
+    color: white;
+  }
+
+  ul {
+    height: 30em;
+    max-width: 40em;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    list-style: none;
+    margin-bottom: 2em;
+    margin: auto;
+
+    align-items: center;
+    background-color: $border-green;
+    overflow-x: hidden;
+    border: 1px solid black;
+  }
+
+  li {
+    width: 100%;
+    background-color: white;
+    list-style-type: none;
+    border: 2px solid black;
+    margin-bottom: 1em;
+    padding: 0.5em;
+
+    button {
+      font-weight: 700;
+      color: $text-color-red;
+      margin: 1em 0 auto;
+      padding: 0;
+      border: none;
+    }
+  }
+}
+
+#menuform_container {
+  display: flex;
+  justify-content: space-around;
+
+}
+
+#foodForm,
+#drinkForm {
+  max-width: 15em;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  padding: 0.9em;
+  line-height: 0.4em;
+  background-color: white;
+
+  button {
+    padding: 0em;
+    width: 100%;
+    margin: 0;
+    border: 2px solid black;
+    font-weight: 700;
+  }
+
+  h3 {
+    margin-bottom: 1em;
+  }
+
+  label {
+    margin-bottom: 0.3em;
+  }
 }

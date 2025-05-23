@@ -241,16 +241,28 @@ async function loadOrders() {
     if (response.ok) {
 
       const data = await response.json();
-      //refresh list
+      //refresh listconsole.log(data)
       currentOrdersEl.innerHTML = "";
       let ulEl = document.createElement("ul")
+      //sort orders so newest order shows up first
+  const sortedOrders = data.sort((a, b) => new Date(b.created) - new Date(a.created));
       //for each order, create list 
-      data.forEach(order => {
+      sortedOrders.forEach(order => {
         let liEl = document.createElement("li")
-        liEl.innerHTML = `
-  <p>Name: ${order.name}</p><p>Phone: ${order.phoneno}</p><p>Food: ${order.food}</p>
-  <p>Drink: ${order.drink}</p><p>Other / Note: ${order.note}</p>`
-
+        
+       liEl.innerHTML = `
+  <p>
+    <strong>Created at: </strong>${new Date(order.created).toLocaleTimeString('en-GB', {
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZone: 'Europe/Stockholm'
+})}<br>
+    <strong>Name:</strong> ${order.name} <br>
+    <strong>Phone:</strong> ${order.phoneno} <br><br>
+    <strong>Food:</strong> ${order.food} <br>
+    <strong>Drink:</strong> ${order.drink} <br><br>
+    <strong>Other / Note:</strong> ${order.note}
+  </p>`;
         //add delete button which calls deleteOrder with _id of order
         const btn = document.createElement("button");
         btn.textContent = "Delete";
@@ -259,6 +271,7 @@ async function loadOrders() {
         currentOrdersEl.appendChild(ulEl)
         ulEl.appendChild(liEl)
         liEl.appendChild(btn)
+       
       });
     } else {//if error
       console.error("Failed to fetch orders");
@@ -358,7 +371,7 @@ async function loadDrinkMenu() {
 
     if (response.ok) {
       //clear innerHTML
-      drinkMenuEl.innerHTML = "";
+      drinkMenuEl.innerHTML = "<h3>Drink menu</h3>";
       const data = await response.json();
 
       let ulEl = document.createElement("ul")
@@ -397,8 +410,9 @@ async function loadFoodMenu() {
     });
     if (response.ok) {
       //clear current menu
-      foodMenuEl.innerHTML = "";
+      foodMenuEl.innerHTML = "<h3>Food menu</h3>";
       let ulEl = document.createElement("ul");
+      
       const data = await response.json();
       //add ul list to menu for each food item
       data.forEach(food => {
