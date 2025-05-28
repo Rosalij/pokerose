@@ -245,18 +245,18 @@ async function loadOrders() {
       currentOrdersEl.innerHTML = "";
       let ulEl = document.createElement("ul")
       //sort orders so newest order shows up first
-  const sortedOrders = data.sort((a, b) => new Date(b.created) - new Date(a.created));
+      const sortedOrders = data.sort((a, b) => new Date(b.created) - new Date(a.created));
       //for each order, create list 
       sortedOrders.forEach(order => {
         let liEl = document.createElement("li")
-        
-       liEl.innerHTML = `
+
+        liEl.innerHTML = `
   <p>
     <strong>Created at: </strong>${new Date(order.created).toLocaleTimeString('en-GB', {
-  hour: '2-digit',
-  minute: '2-digit',
-  timeZone: 'Europe/Stockholm'
-})}<br>
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Europe/Stockholm'
+        })}<br>
     <strong>Name:</strong> ${order.name} <br>
     <strong>Phone:</strong> ${order.phoneno} <br><br>
     <strong>Food:</strong> ${order.food} <br>
@@ -271,7 +271,7 @@ async function loadOrders() {
         currentOrdersEl.appendChild(ulEl)
         ulEl.appendChild(liEl)
         liEl.appendChild(btn)
-       
+
       });
     } else {//if error
       console.error("Failed to fetch orders");
@@ -345,6 +345,7 @@ async function newImage(e) {
       const data = await resp.json();
       alert("Image created");
       imageFormEl.reset()
+      getImages()
 
     } else {//if error, file size might be too big (max 5MB)
       console.error("Create post failed", await resp.json());
@@ -366,6 +367,7 @@ async function loadDrinkMenu() {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
+
       }
     });
 
@@ -378,19 +380,80 @@ async function loadDrinkMenu() {
       //create ul list for each drink item
       data.forEach(drink => {
         let liEl = document.createElement("li");
+        liEl.id = "menuLi"
         liEl.innerHTML = `
-  <p>${drink.name} - ${drink.price}</p>`
+  <p><strong>${drink.name} - ${drink.price}</strong<</p>`
 
         //create delete button used by Admin
-        const button = document.createElement("button");
-        button.textContent = "Delete";
+        const deletebutton = document.createElement("button");
+        deletebutton.textContent = "Delete";
         //on click, run function deleteDrinkItem with drink item _id
-        button.addEventListener("click", () => deleteDrinkItem(drink._id));
+        deletebutton.addEventListener("click", () => deleteDrinkItem(drink._id));
         drinkMenuEl.appendChild(ulEl)
-        liEl.appendChild(button);
+        liEl.appendChild(deletebutton);
+        ulEl.appendChild(liEl);
+        //create update button
+        const updatebutton = document.createElement("button");
+        updatebutton.textContent = "Update";
+
+        //on click, run function updateeDrinkItem with drink item _id
+        updatebutton.addEventListener("click", () => {
+          let updateFormEl = document.createElement("form")
+          updateFormEl.id = "updateForm";
+          updateFormEl.innerHTML = `  
+  <label for="name">Drink Name:</label>
+  <input type="text" id="drinkName" name="name" value="${drink.name}" />
+
+  <label for="price">Price:</label>
+  <input type="string" id="drinkPrice" name="price" value="${drink.price}"/>
+
+  <button id="confirmUpdateButton" type="submit">Update Drink</button>`
+          liEl.innerHTML = ""
+          liEl.appendChild(updateFormEl)
+          updateFormEl.addEventListener("submit", (e) => {
+            updateDrinkItem(e, drink._id)
+          });
+
+
+        });
+        drinkMenuEl.appendChild(ulEl)
+        liEl.appendChild(updatebutton);
         ulEl.appendChild(liEl);
       });
     } else {//if error
+      console.error("Failed to fetch drink");
+    }
+  } catch (error) {
+    console.error("Error fetching drink:", error);
+  }
+}
+
+
+
+async function updateDrinkItem(e, drinkID) {
+  e.preventDefault()
+  let drinkname = document.getElementById("drinkName").value
+  let drinkprice = document.getElementById("drinkPrice").value
+
+  let drink = {
+    name: drinkname,
+    price: drinkprice,
+    _id: drinkID,
+  }
+  try {
+    const response = await fetch(`https://pokerose-db.onrender.com/drink/${drinkID}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("JWT_token")}`,
+      },
+      body: JSON.stringify(drink),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      loadDrinkMenu()
+    } else {
       console.error("Failed to fetch drink");
     }
   } catch (error) {
@@ -412,23 +475,80 @@ async function loadFoodMenu() {
       //clear current menu
       foodMenuEl.innerHTML = "<h3>Food menu</h3>";
       let ulEl = document.createElement("ul");
-      
+
       const data = await response.json();
       //add ul list to menu for each food item
       data.forEach(food => {
         //create li element for item and button
         let liEl = document.createElement("li");
+        liEl.id = "foodmenuLi"
+        let updateFoodButton = document.createElement("button")
         liEl.innerHTML = `
-  <p>${food.name} - ${food.price} <br> ${food.description}</p>`
+  <p><strong>${food.name} - ${food.price}</strong> <br> ${food.description}</p>`
         foodMenuEl.appendChild(ulEl)
         ulEl.appendChild(liEl)
         //add delete button with each item _id
-        const btn = document.createElement("button");
-        btn.textContent = "Delete";
-        btn.addEventListener("click", () => deleteFoodItem(food._id));
-        liEl.appendChild(btn);
+        const deletebutton = document.createElement("button");
+        deletebutton.textContent = "Delete";
+        updateFoodButton.textContent = "Update";
+        deletebutton.addEventListener("click", () => deleteFoodItem(food._id));
+        updateFoodButton.addEventListener("click", () => {
+          let updateFoodFormEl = document.createElement("form")
+          updateFoodFormEl.id = "updateFoodForm";
+          updateFoodFormEl.innerHTML = `  
+  <label for="foodName">Food Name:</label>
+  <input type="text" id="foodName" name="foodName" value="${food.name}" />
+
+  <label for="foodPrice">Price:</label>
+  <input type="string" id="foodPrice" name="foodPrice" value="${food.price}"/>
+<label for="updateDescription">Description:</label>
+  <textarea id="updateDescription" name="updateDescription">${food.description}</textarea>
+  
+  <button id="confirmFoodButton" type="submit">Update Food</button>`
+ liEl.innerHTML = ""
+  liEl.appendChild(updateFoodFormEl)
+  liEl.addEventListener("submit", (e) => {
+    updateFoodItem(e, food._id)
+  });})
+        liEl.appendChild(deletebutton);
+        liEl.appendChild(updateFoodButton)
+
       });
     } else {//if error
+      console.error("Failed to fetch food");
+    }
+  } catch (error) {
+    console.error("Error fetching food:", error);
+  }
+}
+
+
+async function updateFoodItem(e, foodID) {
+  e.preventDefault()
+  let foodName = document.getElementById("foodName").value
+  let foodPrice = document.getElementById("foodPrice").value
+  let description = document.getElementById("updateDescription").value
+
+  let food = {
+    name: foodName,
+    description: description,
+    price: foodPrice,
+    _id: foodID,
+  }
+  try {
+    const response = await fetch(`https://pokerose-db.onrender.com/food/${foodID}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("JWT_token")}`,
+      },
+      body: JSON.stringify(food),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      loadFoodMenu()
+    } else {
       console.error("Failed to fetch food");
     }
   } catch (error) {
@@ -470,14 +590,42 @@ function loadImages(image) {
     divEl.className = "image_div";
     //create IMG element and image URL with alt description inside divEl
     divEl.innerHTML = `
-            ${image.imageurl ? `<img src="${image.imageurl}" alt="${image.description}">` : ""}
-        `;
+            ${image.imageurl ? `<img id="galleryitem" src="${image.imageurl}" alt="${image.description}">` : ""}
+        <p>Description: ${image.description}</p>`;
+    let deletebutton = document.createElement("button")
+    deletebutton.textContent = "Delete"
+    deletebutton.addEventListener("click", () => deleteImage(image._id));
     //connect to DOM
+    divEl.appendChild(deletebutton)
     galleryEl.appendChild(divEl);
   });
 }
 
+async function deleteImage(imageID) {
+  //confirm delete
+  const confirmDelete = confirm("Are you sure you want to delete this image?");
+  if (!confirmDelete) return;
 
+  try { //Fetch /order/:_ID with method DELETE
+    const resp = await fetch(`https://pokerose-db.onrender.com/image/${imageID}`, {
+      method: "DELETE",
+      headers: { //JSON Web Token required
+        "authorization": `Bearer ${localStorage.getItem("JWT_token")}`
+      }
+    });
+
+    if (resp.ok) {
+      //refresh order list
+      getImages();
+
+    } else { //if error
+      alert("Failed to delete image.");
+    }
+  } catch (err) {
+    console.error("Error deleting image:", err);
+    alert("An error occurred.");
+  }
+}
 //function for logging in user, fetch for validation and get JWT token to access hidden pages
 async function login(e) {
   //prevent page refresh

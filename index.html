@@ -17,7 +17,7 @@
         <li><a href="#takeaway_container">Order takeaway</a></li>
         <li><a href="#publicmenu">Menu</a></li>
         <li><a href="#ourstory_container">Our story</a></li>
-        <li><a href="#gallery_container">Gallery</a></li>
+        <li id="gallerylink"><a href="#gallery_container">Gallery</a></li>
       </ul>
       <h1>Poké rose</h1>
     </nav>
@@ -48,7 +48,7 @@
 
 
 
-    <section id="takeaway_container" >
+    <section id="takeaway_container">
       <div id="image_container">
         <img src="/images/pexels-polina-tankilevitch-4828095.jpg" width="1000" height="650" alt="pokébowls">
       </div>
@@ -59,21 +59,9 @@
         <label for="phoneno">Your phone number:</label>
         <input type="text" name="phoneno" id="phoneno">
         <label for="choosefood">Choose food:</label>
-        <select id="choosefood" name="choosefood">
-          <option value="pizza">Pizza</option>
-          <option value="burger">Burger</option>
-          <option value="sushi">Sushi</option>
-          <option value="pasta">Pasta</option>
-        </select>
-        <label for="choosedrink">Choose a drink:</label>
-        <select id="choosedrink" name="choosedrink">
-          <option value="None" selected>Select a drink</option>
-          <option value="water">Water</option>
-          <option value="soda">Soda</option>
-          <option value="juice">Juice</option>
-          <option value="coffee">Coffee</option>
-          <option value="tea">Tea</option>
-        </select>
+        <select name="choosefood" id="choosefood"></select>
+        <label for="choosedrink">Choose drink:</label>
+        <select name="choosedrink" id="choosedrink"></select>
         <label for="note">Notes / other:</label>
         <textarea name="note" id="note"></textarea>
         <button type="submit">Place order!</button>

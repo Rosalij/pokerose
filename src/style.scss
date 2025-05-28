@@ -26,7 +26,7 @@ html {
 }
 
 * {
- box-sizing: border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 
@@ -69,8 +69,8 @@ h1 {
 
 #publicmenu {
   width: 70%;
-  padding-top: 12em;
-  height: 130vh;
+  height: 100%;
+padding-bottom: 6em;
   margin: auto;
 
   #filler_text {
@@ -81,6 +81,7 @@ h1 {
     line-height: 1.5em;
     font-weight: 650;
     margin-bottom: 2em;
+    margin-top: 3em;
     text-align: end;
     font-size: 1.55em;
 
@@ -92,6 +93,7 @@ h1 {
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
+
 
     li {
       margin-bottom: 0.4em;
@@ -109,6 +111,7 @@ h1 {
 
     #food_container {
       margin: auto;
+
     }
 
     #drink_container h3,
@@ -221,12 +224,8 @@ header {
 
 
 #takeawaylink {
-  width: fit-content;
   height: 100vh;
-  width: 100vh;
-  top: 0;
-  left: 0;
-  right: 0;
+  width: 90%;
   position: relative;
 
   a {
@@ -246,16 +245,14 @@ header {
 
 
 footer {
-  width: 100%;
+  max-width: 100%;
   background-color: $text-color-gray;
 
   .footer_container {
-    background-color: $text-color-gray;
     color: white;
     font-weight: 300;
     display: flex;
     flex-direction: row;
-    width: 100%;
     gap: 7em;
     height: 20em;
     margin: auto;
@@ -337,15 +334,16 @@ h2 {
 #gallery {
   display: flex;
   flex-wrap: wrap;
+  gap: 2em;
+  max-width: 70%;
   width: 100%;
-
 
   justify-content: center;
   flex-direction: row;
-  padding-bottom: 13em;
+  padding-bottom: 10em;
 
   img {
-    width: 30em;
+    width: 20em;
     max-width: 100%;
     height: 30em;
     object-fit: cover;
@@ -391,10 +389,12 @@ h2 {
   border-bottom-style: solid;
 }
 
-#orderForm, #loginForm {
+#orderForm,
+#loginForm {
   grid-row: 1;
   grid-column: 1;
-  height: fit-content;;
+  height: fit-content;
+  ;
   max-width: 400px;
   margin: auto;
   padding: 1.5rem;
@@ -404,11 +404,12 @@ h2 {
   border-style: solid;
 
   font-family: $primary-font;
- h2 {
-  text-align: center;
-  margin-left: 0;
-  letter-spacing: 0.1em;
- }
+
+  h2 {
+    text-align: center;
+    margin-left: 0;
+    letter-spacing: 0.1em;
+  }
 }
 
 div {
@@ -423,33 +424,240 @@ label {
 
 
 input,
-select, textarea {
+select,
+textarea {
   width: 100%;
   padding: 0.4rem;
   color: black;
   margin-bottom: 1rem;
   border: 1px solid $text-color-red;
   border-radius: 4px;
- 
+
 }
 
 button {
   background-color: white;
-  color:black;
+  color: black;
   border: 4px solid $text-color-red;
   padding-left: 2rem;
   margin-top: 1em;
-    padding:1em;
+  padding: 1em;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
   font-family: $primary-font;
   transition: 0.3s;
-margin-left: 25%;
-margin-right: 25%;}
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
 button:hover {
- text-decoration: underline;
+  text-decoration: underline;
 
 
+
+}
+
+
+@media all and (max-width: 1330px) {
+  #takeawaylink {
+    right: 10%;
+    top: -100px;
+  }
+
+  #publicmenu h2 {
+    margin-left: 2em;
+  }
+
+  #foodMenu {
+    width: 20em;
+  }
+
+  #gallery {
+    max-width: 100%;
+  }
+
+}
+
+@media all and (max-width: 950px) {
+  #ourstory_container {
+    div {
+      width: 20em;
+    }
+  }
+
+  #publicmenu {
+    height: fit-content;
+
+    padding-bottom: 10em;
+
+    #drink_container {
+      width: 100%;
+    }
+  }
+}
+
+@media all and (max-width:900px) {
+  header nav {
+    margin: auto;
+    text-align: center;
+  }
+
+  header a {
+    width: 100%;
+    font-size: 1em;
+    font-weight: 700;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  header a:hover {
+    font-weight: 700;
+  }
+
+  header {
+    display: flex;
+    margin: auto;
+    background-color: $background-color;
+    flex-flow: row-reverse;
+  }
+
+  h1 {
+    top: 0;
+    position: relative;
+    ;
+    max-width: 100%;
+    margin: auto;
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  #takeawaylink {
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    margin-top: 2em;
+    left: 0;
+    right: 0;
+
+    a {
+      margin: auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+
+  #arrowDown {
+    position: absolute;
+    top: 3em;
+  }
+
+  #gallerylink {
+    display: none
+  }
+
+  #vh_image_container img {
+    position: relative;
+    z-index: 0;
+    object-position: bottom;
+  }
+
+  #vh_image_container {
+    position: relative;
+    height: 90vh;
+  }
+
+  #publicmenu_container {
+    width: 75%;
+    margin: auto;
+
+  }
+
+  #menu_flex_container {
+    position: relative;
+
+
+  }
+
+  #foodMenu {
+    width: 100%;
+    margin: auto;
+
+  }
+
+
+
+  #publicmenu {
+    width: 76%;
+    margin: auto;
+    margin-left: 5em;
+
+    h2 {
+      margin: 0;
+      margin-bottom: 1em;
+    }
+
+    #filler_text {
+      display: block;
+      width: 100%;
+      margin-top: 6em;
+
+    }
+
+    #drink_container {
+      padding-top: 2em;
+      margin: auto;
+    }
+  }
+
+  #ourstory_container {
+    div {
+      padding-top: 6em;
+    }
+
+    img {
+      min-width: 100%;
+      ;
+
+    }
+  }
+
+  #orderForm {
+   margin-left: 4.5em;
+  }
+
+  footer {
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+  }
+
+  .footer_container {
+    flex-direction: column;
+    ;
+
+    position: relative;
+
+    .p_pokerose {
+      width: 100%;
+      padding-top: 15%;
+      margin: auto;
+      margin-top: 2em;
+      font-size: 2em;
+
+    }
+
+    div {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  #gallery_container h2 {
+    padding-top: 4em;
+    margin: auto;
+  }
 
 }

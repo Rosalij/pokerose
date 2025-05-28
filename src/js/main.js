@@ -28,7 +28,8 @@ function init() {
 
   if (orderFormEl) {
     //Event listener for order form
-    orderFormEl.addEventListener("submit", addOrder)
+    orderFormEl.addEventListener("submit", addOrder),
+    loadOrderItems()
   }
 
 
@@ -135,63 +136,96 @@ async function loadFoodMenu() {
 }
 
 
+async function loadOrderItems() {
 
+ try {//get menu item names
+    const res = await fetch('https://pokerose-db.onrender.com/menu',
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
 
+    const data = await res.json();
+    const foodSelect = document.getElementById('choosefood');
+    const drinkSelect = document.getElementById('choosedrink');
+
+    //Clear option
+    foodSelect.innerHTML = '<option value="">Select food</option>'
+    drinkSelect.innerHTML = '<option value="">Select drink</option>';
+
+    //add food options
+    data.food.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.name;
+      option.textContent = item.name;
+      foodSelect.appendChild(option);
+    });
+
+    // Add drink options
+    data.drink.forEach(item => {
+      const option = document.createElement('option');
+      option.value = item.name;
+      option.textContent = item.name;
+      drinkSelect.appendChild(option);
+    });
+  } catch (err) {
+    console.error('Error loading menu:', err);
+  }
+}
 
 //function for creating new order
 async function addOrder(e) {
   //prevent page refresh
   e.preventDefault()
+ 
+//get the input from the form
+let name = document.getElementById("name").value;
+let phoneno = document.getElementById("phoneno").value;
+let choosefood = document.getElementById("choosefood").value;
+let choosedrink = document.getElementById("choosedrink").value;
+let note = document.getElementById("note").value;
 
-  //get the input from the form
-  let name = document.getElementById("name").value;
-  let phoneno = document.getElementById("phoneno").value;
-  let choosefood = document.getElementById("choosefood").value;
-  let choosedrink = document.getElementById("choosedrink").value;
-  let note = document.getElementById("note").value;
-
-  //if no name input or phone input, return
-  if (!name || !phoneno) {
-    alert("Please fill in your name and phone number")
-    return;
-  } //if no food input or drink input, return
-  if (!choosefood || !choosedrink) {
-    alert("Please select food or drink to order")
-    return;
-  }
-  //create order object
-  let order = {
-    name: name,
-    phoneno: phoneno,
-    food: choosefood,
-    drink: choosedrink,
-    note: note,
-  }
-
-  try { //send POST request with /order and order object
-    const resp = await fetch("https://pokerose-db.onrender.com/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(order)
-    })
-    if (resp.ok) { //if order is saved
-      const data = await resp.json()
-      alert("Order placed!")
-      orderFormEl.reset()
-    } else { //if error
-      console.log("something went wrong" + error)
-    }
-  } catch (error) {
-    console.log("An error occured" + error)
-  }
+//if no name input or phone input, return
+if (!name || !phoneno) {
+  alert("Please fill in your name and phone number");
+   return;
+} //if no food input or drink input, return
+if (!choosefood || !choosedrink) {
+  alert("Please select food or drink to order");
+  return;
 }
 
 
+//create order object
+let order = {
+  name: name,
+  phoneno: phoneno,
+  food: choosefood,
+  drink: choosedrink,
+  note: note,
+}
 
-
-
+try { //send POST request with /order and order object
+  const resp = await fetch("https://pokerose-db.onrender.com/order", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(order)
+  })
+  if (resp.ok) { //if order is saved
+    const data = await resp.json()
+    alert("Order placed!")
+    orderFormEl.reset()
+  } else { //if error
+    console.log("something went wrong" + error)
+  }
+} catch (error) {
+  console.log("An error occured" + error)
+}
+};
 
 
 //function for getting images from server
