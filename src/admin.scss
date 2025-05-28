@@ -272,7 +272,7 @@ $primary-font: "urbanist", "sans serif";
 
 #galleryform_container {
   justify-content: center;
-  width: 25em;
+  width: 20em;
   display: flex;
   margin: auto;
   align-items: center;
@@ -294,7 +294,9 @@ $primary-font: "urbanist", "sans serif";
 }
 
 .adminmain_container {
-  padding-bottom: 2em;
+  padding-bottom: 2em;  margin: auto;
+  margin-top: 1em;
+
 
   #gallery {
     gap: 2em;
@@ -396,7 +398,12 @@ $primary-font: "urbanist", "sans serif";
       border-radius: 0.4em;
       border: 2px solid black;
       transition: 0.3s;
-      height: 3.2em;
+      height: 4em;
+  
+      a {
+    
+        margin: auto;
+      }
     
     }
   }
