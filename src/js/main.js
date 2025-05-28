@@ -13,7 +13,7 @@ const orderFormEl = document.getElementById("orderForm");
 const foodMenuEl = document.getElementById("foodMenu")
 const drinkMenuEl = document.getElementById("drinkMenu")
 const publicMenuEl = document.querySelector(".publicmenu")
-
+const messagedivEl = document.getElementById("messagediv")
 
 //run on load
 window.onload = init
@@ -152,8 +152,8 @@ async function loadOrderItems() {
     const drinkSelect = document.getElementById('choosedrink');
 
     //Clear option
-    foodSelect.innerHTML = '<option value="">Select food</option>'
-    drinkSelect.innerHTML = '<option value="">Select drink</option>';
+    foodSelect.innerHTML = '<option value="">None</option>'
+    drinkSelect.innerHTML = '<option value="">None</option>';
 
     //add food options
     data.food.forEach(item => {
@@ -188,14 +188,11 @@ let choosedrink = document.getElementById("choosedrink").value;
 let note = document.getElementById("note").value;
 
 //if no name input or phone input, return
-if (!name || !phoneno) {
-  alert("Please fill in your name and phone number");
+if (!name || !phoneno || !choosefood) {
+  messagedivEl.innerHTML = `<p><strong>Please fill in at least your name, phone number and food to order</strong></p>`
    return;
-} //if no food input or drink input, return
-if (!choosefood || !choosedrink) {
-  alert("Please select food or drink to order");
-  return;
-}
+} 
+
 
 
 //create order object
@@ -217,7 +214,7 @@ try { //send POST request with /order and order object
   })
   if (resp.ok) { //if order is saved
     const data = await resp.json()
-    alert("Order placed!")
+   messagedivEl.innerHTML = `<p><strong>Order placed! It will be ready for pick-up in about 10 minutes.</strong></p>`
     orderFormEl.reset()
   } else { //if error
     console.log("something went wrong" + error)

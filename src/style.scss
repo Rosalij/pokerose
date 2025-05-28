@@ -39,6 +39,9 @@ body {
   font-family: $primary-font;
 }
 
+#messagediv {
+padding: 1em;
+}
 h1 {
   @extend %heading-style;
   margin-left: 0.5em;
@@ -69,7 +72,7 @@ h1 {
 
 #publicmenu {
   width: 70%;
-  height: 100%;
+  height: 100vh;
 padding-bottom: 6em;
   margin: auto;
 
@@ -445,6 +448,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: 600;
   font-family: $primary-font;
   transition: 0.3s;
   margin-left: 25%;
@@ -551,7 +555,7 @@ button:hover {
 
   #arrowDown {
     position: absolute;
-    top: 3em;
+    top: -2em;
   }
 
   #gallerylink {
@@ -566,7 +570,7 @@ button:hover {
 
   #vh_image_container {
     position: relative;
-    height: 90vh;
+    height: 80vh;
   }
 
   #publicmenu_container {
