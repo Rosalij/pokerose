@@ -1,96 +1,106 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pokérose</title>
-  <link rel="stylesheet" href="/src/style.css">
+  <title>Pokérose pokébowl takeaway</title>
+
 </head>
 
 <body>
-  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="./src/js/main.js"></script>
   <header>
-    <h1>Poké Rose</h1>
+
+    <nav>
+      <ul>
+        <li><a href="#takeaway_container">Order takeaway</a></li>
+        <li><a href="#publicmenu">Menu</a></li>
+        <li><a href="#ourstory_container">Our story</a></li>
+        <li id="gallerylink"><a href="#gallery_container">Gallery</a></li>
+      </ul>
+      <h1>Poké rose</h1>
+    </nav>
   </header>
+
+
+
   <main>
+    <div id="vh_image_container"></div>
+    <h2 id="takeawaylink"><a href="#takeaway_container">pokébowl takeaway</a></h2>
 
-    <form id="imageForm" action="/image" method="POST" enctype="multipart/form-data">
-      <label for="image">Upload an image:</label>
-      <input type="file" id="image" name="image" accept="image/*" required>
-      <label for="description" id="description">Description:</label>
-      <textarea name="description" id="imagedescription"></textarea>
-      <button type="submit">Upload</button>
-    </form>
-    <div id="gallery"></div>
+    <div id="arrowDown"> <a id=arrowlink href="#publicmenu"> <span id="line1"></span><span id="line2"></span> </a></div>
 
-
-
-    <form id="foodForm" action="/food" method="POST">
-      <label for="foodname">Name:</label>
-      <input type="text" name="foodname" id="foodname" required>
-      <label for="foodprice">Price:</label>
-      <input type="text" name="foodprice" id="foodprice"></input>
-      <label for="description" id="description">Description:</label>
-      <textarea name="description" id="description"></textarea>
-      <button type="submit">Add item</button>
-    </form>
- <div id="foodmenu"></div>
+    <section data-aos="fade-up" data-aos-duration="2000" id="publicmenu" class="publicmenu_container">
+      <p id="filler_text">Rooted in the ocean. Refined with care. <br>Welcome to Poké rose.</p>
+      <h2>our menu</h2>
+      <div id="menu_flex_container">
+        <div id="food_container">
+          <h3>Signature bowls</h3>
+          <div class="publicmenu" id="foodMenu"></div>
+        </div>
+        <div id="drink_container">
+          <h3>Drinks</h3>
+          <div class="publicmenu" id="drinkMenu"></div>
+        </div>
+      </div>
+    </section>
 
 
-    <form id="drinkForm" action="/drink" method="POST">
-      <label for="drinkname">name:</label>
-      <input type="text" name="drinkname" id="drinkname" required>
-      <label for="drinkprice">Price:</label>
-      <input type="text" name="drinkprice" id="drinkprice" required></input>
-      <button type="submit">Add item</button>
-    </form>
-     <div id="drinkmenu"></div>
 
-    <br>
+    <section id="takeaway_container">
+      <div id="image_container">
+        <img src="/images/pexels-polina-tankilevitch-4828095.jpg" width="1000" height="650" alt="pokébowls">
+      </div>
+      <form id="orderForm" data-aos="zoom-up" data-aos-duration="1500">
+        <h2>order takeaway</h2>
+        <label for="name">Your name:</label>
+        <input type="text" name="name" id="name">
+        <label for="phoneno">Your phone number:</label>
+        <input type="text" name="phoneno" id="phoneno">
+        <label for="choosefood">Choose food:</label>
+        <select name="choosefood" id="choosefood"></select>
+        <label for="choosedrink">Choose drink:</label>
+        <select name="choosedrink" id="choosedrink"></select>
+        <label for="note">Notes / other:</label>
+        <textarea name="note" id="note"></textarea>
+        <button type="submit">Place order!</button>
+      </form>
 
-    <form id="orderForm">
-      <label for="name">Your name:</label>
-      <input type="text" name="name" id="name">
-      <label for="phoneno">Your phone number:</label>
-      <input type="text" name="phoneno" id="phoneno">
-      <label for="choosefood">Choose food:</label>
-      <select id="choosefood" name="choosefood">
-        <option value="pizza">Pizza</option>
-        <option value="burger">Burger</option>
-        <option value="sushi">Sushi</option>
-        <option value="pasta">Pasta</option>
-      </select>
-      <label for="choosedrink">Choose a drink:</label>
-      <select id="choosedrink" name="choosedrink">
-        <option value="None" selected>Select a drink</option>
-        <option value="water">Water</option>
-        <option value="soda">Soda</option>
-        <option value="juice">Juice</option>
-        <option value="coffee">Coffee</option>
-        <option value="tea">Tea</option>
-      </select>
-      <label for="note">Notes / other:</label>
-      <textarea name="note" id="note"></textarea>
-      <button type="submit">Place order!</button>
-    </form>
-     <div id="currentorders"></div>
+    </section>
 
-    <br>
+    <section id="ourstory_container">
+      <img src="/images/david-foodphototasty-pinkbg-poke-unsplash.jpg" alt="Pokébowl and leafs" width="500"
+        height="600">
+      <div data-aos="fade-up" data-aos-duration="2000">
+        <h2>our story</h2>
+        <p>Poké Rose was created with a simple idea: serve high-quality poke with care and attention to detail. Drawing
+          from
+          Hawaiian tradition and Japanese technique, we focus on clean flavors, fresh ingredients, and well-balanced
+          combinations.<br> <br>
+          Our menu is built around responsibly sourced seafood, seasonal produce, and house-made dressings — nothing
+          overdone, nothing unnecessary. Just honest food, made well.
+          We’re here to offer a quieter, more thoughtful take on poke.</p>
+      </div>
+    </section>
 
-
-    <form id="loginform">
-      <label for="username">Username:</label>
-      <input type="text" name="username" id="username">
-      <label for="password">Password:</label>
-      <input type="text" name="password" id="password">
-      <button type="submit">Log in</button>
-    </form>
-    <div id="loggedinuser"></div>
-
+    <section id="gallery_container">
+      <h2 id="gallery_title">gallery</h2>
+      <div data-aos="fade-up" data-aos-duration="2000" id="gallery"></div>
+      
+    </section>
   </main>
-  <footer></footer>
+
+  <footer>
+    <div class="footer_container">
+      <p class="p_pokerose">Poké rose</p>
+      <div>
+        <p><strong>Find us:</strong><br>Wallaby way 24 Sydney</p>
+        <p><strong>Call us:</strong><br>1234 123 00</p>
+        <p><strong>Email us:</strong><br>pokerosepokebowls@info.com</p>
+      </div>
+    </div>
+  </footer>
 </body>
 
 </html>

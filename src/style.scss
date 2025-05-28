@@ -1,0 +1,663 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+$background-color: #D7D7D5;
+$text-color-red: #AA411A;
+$text-color-gray: #6E7F78;
+$border-green: #C6D586;
+$primary-font: "urbanist", "sans serif";
+
+%heading-style {
+  color: #AA411A;
+  font-size: 3em;
+  max-width: min-content;
+  font-style: italic;
+  font-weight: 900;
+}
+
+%text-spaced {
+  text-decoration: none;
+  color: $text-color-red;
+  font-size: 0.8em;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+body {
+  max-width: 1900px;
+  margin: auto;
+  background-color: $background-color;
+  font-family: $primary-font;
+}
+
+h1 {
+  @extend %heading-style;
+  margin-left: 0.5em;
+  position: absolute;
+  text-align: left;
+  top: 0.3em;
+  font-size: 4.5em;
+}
+
+#vh_image_container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  max-width: 1900px;
+  margin: auto;
+  background-image: url(/images/pexels-polina-tankilevitch-4828219.jpg);
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  z-index: -1;
+  border-bottom-color: $border-green;
+  border-bottom-style: solid;
+  border-bottom-width: 0.5em;
+}
+
+#publicmenu {
+  width: 70%;
+  height: 100%;
+padding-bottom: 6em;
+  margin: auto;
+
+  #filler_text {
+    @extend %heading-style;
+    color: $text-color-gray;
+    max-width: 75%;
+    margin-left: 20%;
+    line-height: 1.5em;
+    font-weight: 650;
+    margin-bottom: 2em;
+    margin-top: 3em;
+    text-align: end;
+    font-size: 1.55em;
+
+  }
+
+
+  #menu_flex_container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+
+
+    li {
+      margin-bottom: 0.4em;
+      font-size: 0.9em;
+
+      strong {
+        color: #6E7F78;
+        font-size: 1.1em;
+        font-style: normal;
+        font-weight: 400;
+        text-align: center;
+        letter-spacing: 1px;
+      }
+    }
+
+    #food_container {
+      margin: auto;
+
+    }
+
+    #drink_container h3,
+    #food_container h3 {
+      max-width: 100%;
+      @extend %heading-style;
+      color: $text-color-gray;
+      padding-bottom: 0.4em;
+      font-size: 1.2em;
+
+    }
+
+    #drinkmenu li {
+      width: 100%;
+      list-style-type: disc;
+
+    }
+  }
+
+  li {
+    list-style-type: decimal;
+    color: $text-color-red
+  }
+
+  #drink_container {
+    width: 20%;
+    margin-top: 8em;
+  }
+}
+
+
+#arrowDown {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#arrowlink:hover {
+  transform: translateY(15px);
+}
+
+#arrowDown a {
+  display: flex;
+  position: absolute;
+  top: 83vh;
+  width: fit-content;
+  gap: 2em;
+  justify-content: center;
+  transition: 0.4s;
+
+
+
+  #line1,
+  #line2 {
+    display: flex;
+    position: relative;
+    color: $border-green;
+    width: 1em;
+    height: 5.2em;
+
+    background-color: #C6D586;
+  }
+
+  a {
+    transition: 1s;
+  }
+
+  #line1 {
+    transform: translateX(-50%) rotate(-45deg);
+  }
+
+  #line2 {
+    transform: translateX(-50%) rotate(45deg);
+  }
+}
+
+header {
+  display: flex;
+  width: 100%;
+  margin: auto;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+
+  nav {
+    width: 100%;
+    padding: 1em;
+    text-align: right;
+  }
+
+  li {
+    display: inline-flex;
+    margin: 1em;
+  }
+
+  a {
+    margin: auto;
+    text-decoration: none;
+    color: $text-color-red;
+    font-size: 1.2em;
+
+  }
+
+  li :hover {
+    font-weight: 400;
+    text-decoration: underline;
+  }
+
+}
+
+
+#takeawaylink {
+  height: 100vh;
+  width: 90%;
+  position: relative;
+
+  a {
+    @extend %text-spaced;
+    position: absolute;
+    top: 12em;
+    left: 10em;
+    margin: auto;
+
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+
+
+footer {
+  max-width: 100%;
+  background-color: $text-color-gray;
+
+  .footer_container {
+    color: white;
+    font-weight: 300;
+    display: flex;
+    flex-direction: row;
+    gap: 7em;
+    height: 20em;
+    margin: auto;
+  }
+
+  div {
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 1em;
+    max-width: fit-content;
+
+  }
+
+  .p_pokerose {
+    @extend %heading-style;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    align-items: flex-end;
+  }
+
+  p {
+    font-size: 1em;
+  }
+
+  strong {
+    font-style: italic;
+    font-weight: 700;
+  }
+}
+
+h2 {
+  color: #6E7F78;
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
+  line-height: normal;
+  letter-spacing: 0.15em;
+}
+
+#ourstory_container {
+  @extend %text-spaced;
+  color: $text-color-gray;
+  font-size: 1em;
+  line-height: 1.5em;
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    width: 100%;
+    max-width: 40vw;
+    object-fit: cover;
+    border-bottom-color: #C6D586;
+    border-bottom-style: solid;
+    border-bottom-width: 0.5em;
+
+  }
+
+  div {
+    width: 30%;
+
+  }
+
+}
+
+#gallery_container h2 {
+  text-align: center;
+  font-size: 2em;
+  padding-bottom: 1em;
+  padding-top: 7em;
+}
+
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+  max-width: 70%;
+  width: 100%;
+
+  justify-content: center;
+  flex-direction: row;
+  padding-bottom: 10em;
+
+  img {
+    width: 20em;
+    max-width: 100%;
+    height: 30em;
+    object-fit: cover;
+    border-bottom-color: $border-green;
+    border-top-color: $border-green;
+    border-bottom-width: 0.5em;
+    border-top-width: 0.5em;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-width: 0.5em;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-bottom-color: $border-green;
+  }
+
+}
+
+
+
+#takeaway_container {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+#image_container {
+  grid-row: 1;
+  grid-column: 1
+}
+
+#image_container img {
+  display: flex;
+  width: 100vw;
+  height: 110vh;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-bottom-color: $border-green;
+  border-top-color: $border-green;
+  border-bottom-width: 0.5em;
+  border-top-width: 0.5em;
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
+
+#orderForm,
+#loginForm {
+  grid-row: 1;
+  grid-column: 1;
+  height: fit-content;
+  ;
+  max-width: 400px;
+  margin: auto;
+  padding: 1.5rem;
+  background-color: $background-color;
+  border-color: $border-green;
+  border-width: 0.5em;
+  border-style: solid;
+
+  font-family: $primary-font;
+
+  h2 {
+    text-align: center;
+    margin-left: 0;
+    letter-spacing: 0.1em;
+  }
+}
+
+div {
+  margin: auto;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.4rem;
+  color: black;
+  margin-bottom: 1rem;
+  border: 1px solid $text-color-red;
+  border-radius: 4px;
+
+}
+
+button {
+  background-color: white;
+  color: black;
+  border: 4px solid $text-color-red;
+  padding-left: 2rem;
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: $primary-font;
+  transition: 0.3s;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+button:hover {
+  text-decoration: underline;
+
+
+
+}
+
+
+@media all and (max-width: 1330px) {
+  #takeawaylink {
+    right: 10%;
+    top: -100px;
+  }
+
+  #publicmenu h2 {
+    margin-left: 2em;
+  }
+
+  #foodMenu {
+    width: 20em;
+  }
+
+  #gallery {
+    max-width: 100%;
+  }
+
+}
+
+@media all and (max-width: 950px) {
+  #ourstory_container {
+    div {
+      width: 20em;
+    }
+  }
+
+  #publicmenu {
+    height: fit-content;
+
+    padding-bottom: 10em;
+
+    #drink_container {
+      width: 100%;
+    }
+  }
+}
+
+@media all and (max-width:900px) {
+  header nav {
+    margin: auto;
+    text-align: center;
+  }
+
+  header a {
+    width: 100%;
+    font-size: 1em;
+    font-weight: 700;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  header a:hover {
+    font-weight: 700;
+  }
+
+  header {
+    display: flex;
+    margin: auto;
+    background-color: $background-color;
+    flex-flow: row-reverse;
+  }
+
+  h1 {
+    top: 0;
+    position: relative;
+    ;
+    max-width: 100%;
+    margin: auto;
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  #takeawaylink {
+    position: absolute;
+    width: 100%;
+    margin: 0;
+    margin-top: 2em;
+    left: 0;
+    right: 0;
+
+    a {
+      margin: auto;
+      left: 0;
+      right: 0;
+      text-align: center;
+    }
+  }
+
+  #arrowDown {
+    position: absolute;
+    top: 3em;
+  }
+
+  #gallerylink {
+    display: none
+  }
+
+  #vh_image_container img {
+    position: relative;
+    z-index: 0;
+    object-position: bottom;
+  }
+
+  #vh_image_container {
+    position: relative;
+    height: 90vh;
+  }
+
+  #publicmenu_container {
+    width: 75%;
+    margin: auto;
+
+  }
+
+  #menu_flex_container {
+    position: relative;
+
+
+  }
+
+  #foodMenu {
+    width: 100%;
+    margin: auto;
+
+  }
+
+
+
+  #publicmenu {
+    width: 76%;
+    margin: auto;
+    margin-left: 5em;
+
+    h2 {
+      margin: 0;
+      margin-bottom: 1em;
+    }
+
+    #filler_text {
+      display: block;
+      width: 100%;
+      margin-top: 6em;
+
+    }
+
+    #drink_container {
+      padding-top: 2em;
+      margin: auto;
+    }
+  }
+
+  #ourstory_container {
+    div {
+      padding-top: 6em;
+    }
+
+    img {
+      min-width: 100%;
+      ;
+
+    }
+  }
+
+  #orderForm {
+   margin-left: 4.5em;
+  }
+
+  footer {
+    width: 100%;
+    height: fit-content;
+    margin: auto;
+  }
+
+  .footer_container {
+    flex-direction: column;
+    ;
+
+    position: relative;
+
+    .p_pokerose {
+      width: 100%;
+      padding-top: 15%;
+      margin: auto;
+      margin-top: 2em;
+      font-size: 2em;
+
+    }
+
+    div {
+      width: 100%;
+      margin: auto;
+    }
+  }
+
+  #gallery_container h2 {
+    padding-top: 4em;
+    margin: auto;
+  }
+
+}

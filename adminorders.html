@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokérose pokébowl takeaway</title>
+    <script src="checkAuth.js"></script>
+</head>
+
+<body id="adminbody">
+    <script type="module" src="./src/js/admin.js"></script>
+    <div id="admin_container">
+        <header id="adminheader">
+            <nav id="admin_nav">
+                <h1 id="admin_h1">Poké rose admin</h1>
+                <ul>
+                    <li><a href="adminorders.html">Current orders</a></li>
+                    <li ><a id="current" href="adminmenu.html">Edit menu</a></li>
+                    <li><a href="admingallery.html">Edit gallery</a></li>
+                    <li><a href="login.html" id="logout">Log out</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class ="adminmain_container" id="order_container">
+            <h2>Current orders:</h2>
+            <div id="currentOrders"></div>
+        </div>
+    </div>
+</body>
+
+</html>
