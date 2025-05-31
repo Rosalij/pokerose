@@ -1,4 +1,4 @@
-# Restaurant pokerose frontend customer website and CMS
+# Restaurant pokerose frontend customer website and admin CMS
 This is a website built with Vite and represents a restaurant. The website has two different parts - one for the public and one CMS part for the staff of the restaurant
  to be able to log in as admin at /login and change information on the public webpage dynamically, in the food and drink menu, in the image gallery, and see and delete current takeaway orders.
 The website uses a web service: 
